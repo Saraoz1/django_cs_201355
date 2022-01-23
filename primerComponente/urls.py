@@ -4,6 +4,6 @@ from django.conf.urls import include
 from primerComponente.views import PrimerTablalist
 
 urlpatterns = [ 
-    re_path(r'^primer_componente/$',PrimerTablalist.as_view()),
+    re_path(r'^lista/$',PrimerTablalist.as_view()),
 
 ]
