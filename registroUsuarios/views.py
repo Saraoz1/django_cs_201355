@@ -1,3 +1,6 @@
+from django.shortcuts import render
+
+# Create your views here.
 from urllib import response
 from rest_framework.response import Response
 from django.shortcuts import render
@@ -5,11 +8,11 @@ from rest_framework.views import APIView
 
 
 #importaciones de modelos agregados
-from users.models import PrimerTablaUser
+from registroUsuarios.models import PrimerTablaUser
 
 #improtaciones de serializadores
-from users.serializers import PrimerTablaSerializers
-
+from registroUsuarios.serializers import PrimerTablaSerializers
+from rest_framework  import routers,serializers, viewsets 
 # Create your views here.
 class PrimerTablalistUser(APIView):
     def get (self, request, format=None):
