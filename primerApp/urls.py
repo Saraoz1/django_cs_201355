@@ -1,8 +1,9 @@
-
-
+from unicodedata import name
 from django.urls import path, include, re_path
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from rest_framework.views import APIView
+
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -17,14 +18,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'user', UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
     re_path(r'^api/v1/login', include('Login.urls')),
+    re_path(r'^api/v1/register/', include ('RegisterUser.urls')),
     re_path(r'^api/v1/primer_componente/', include('primerComponente.urls')),
-    re_path(r'^api/v1/registrousuarios/', include('registroUsuarios.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace ='rest_framework'))
 ]

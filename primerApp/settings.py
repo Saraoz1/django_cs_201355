@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from unittest.mock import DEFAULT
+from dotenv import load_dotenv
+import os 
+load_dotenv ()   # tomar variables de entorno de .env. 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-td&2j$nxlei*$1dd)bdzw)-)*-c^k=2sxrk%wh3906rw6$6j#-'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,7 +46,8 @@ INSTALLED_APPS = [
     #componentes agregados
     'primerComponente',
     'Login',
-    'registroUsuarios',
+    'RegisterUser',
+    
     
 
     # Librerias agregadas al proyecto
@@ -97,12 +101,12 @@ WSGI_APPLICATION = 'primerApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  'dbDjango',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME':  os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv ("DB_PASSWORD"),
+        'HOST': os.getenv ("DB_HOST"),
+        'PORT': os.getenv ("DB_PORT")
 
     }
 }
